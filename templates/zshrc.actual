@@ -1,0 +1,80 @@
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/.oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="robbyrussell"
+
+# Set to this to use case-sensitive completion
+# CASE_SENSITIVE="true"
+
+# Comment this out to disable weekly auto-update checks
+DISABLE_AUTO_UPDATE="true"
+
+# Uncomment following line if you want to disable colors in ls
+# DISABLE_LS_COLORS="true"
+
+# Uncomment following line if you want to disable autosetting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment following line if you want red dots to be displayed while waiting for completion
+COMPLETION_WAITING_DOTS="true"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git extract)
+
+source $ZSH/oh-my-zsh.sh
+
+alias e='emacsclient -c'
+alias es='emacs -daemon'
+# alias emacs='emacsclient -c'
+alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
+alias emacsclient="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+alias q='exit'
+alias c='clear'
+alias h='history -a'
+alias la='ls -a'
+alias pingg='ping google.com'
+alias pgrep='ps aux | grep'
+alias testsolr='cd ~/Projects/StayPuft/webapp;bx rake sunspot:solr:start RAILS_ENV=test'
+alias devsolr='cd ~/Projects/StayPuft/webapp;bx rake sunspot:solr:start'
+alias sz='source ~/.zshrc'
+alias cpr='rsync -rv --progress'
+alias grep='grep --color=auto -nar'
+alias bi='bundle install'
+alias bx='bundle exec'
+alias gs='git status'
+alias gd='git diff'
+alias ce='cd /home/piyush/.emacs.d'
+alias regen-tags='ctags -a -e -f TAGS --tag-relative -R app lib vendor'
+alias showaws='bx knife exec ~/Projects/Provisioning/chef/scripts/list.rb -c ~/Projects/Provisioning/chef/knife_dev.rb'
+alias showall='bx knife exec ~/Projects/Provisioning/chef/scripts/list.rb -c ~/Projects/Provisioning/chef/knife_dev.rb +show-production'
+
+# Customize to your needs...
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/piyush/.rvm/bin:$HOME/android-sdk-macosx/tools:$HOME/android-sdk-macosx/platform-tools
+
+# export JAVA_HOME=/Library/Java/Home
+export ANDROID_HOME=$HOME/android-sdk-macosx
+export EDITOR=vim
+export VISUAL=vim
+export ALTERTNATE_EDITOR=vim
+
+
+insert_sudo () { zle beginning-of-line; zle -U "sudo " }
+zle -N insert-sudo insert_sudo
+bindkey "^z" insert-sudo
+
+setopt HIST_FIND_NO_DUPS
+setopt EXTENDED_HISTORY
+
+[[ -s "/Users/piyush/.rvm/scripts/rvm" ]] && source "/Users/piyush/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+
+ssh-add /Users/piyush/.ssh/id_rsa_neat
+ssh-add -l
+
+if [ -f `brew --prefix`/etc/autojump ]; then
+  . `brew --prefix`/etc/autojump
+fi
